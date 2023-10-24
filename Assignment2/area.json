@@ -1,0 +1,27 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/LlyodCole/FIT3179/main/Assignment2/data/WorldUniversityRankings2023.csv"
+    },
+    "width": 200,
+    "height": 200,
+    "transform": [
+      {"filter": "datum.UniversityRank <= 20 && datum.OverAll_Score > 0"}
+    ],
+    "mark": {"type": "area", "line": true, "point": "all"},
+    "encoding": {
+      "x": {"field": "UniversityRank", "type": "ordinal"},
+      "y": {
+        "aggregate": "sum",
+        "field": "Teaching_Score",
+        "stack": "normalize",
+        "title": "Normalized Teaching Score"
+      },
+      "color": {"field": "Teaching_Score", "scale": {"scheme": "viridis"}, "title": "Teaching Score"},
+      "tooltip": [
+        {"field": "UniversityRank", "title": "University Ranking", "type": "ordinal"},
+        {"field": "Teaching_Score", "title": "Teaching Score", "type": "quantitative"},
+        {"field": "Research_Score", "title": "Research Score", "type": "quantitative"}
+      ]
+    }
+  }

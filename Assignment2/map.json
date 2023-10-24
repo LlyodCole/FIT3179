@@ -1,0 +1,126 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "World University Ranking 2023",
+    "width": 700,
+    "height": 400,
+    "data": {
+      "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+      "format": {
+        "type": "topojson",
+        "feature": "ne_110m_admin_0_countries"
+      }
+    },
+    "params" : [
+      {
+        "name" : "University_Rank_Above",
+        "value" : 0,
+        "bind" : {
+          "input": "range", 
+          "min": 1,
+          "max": 500, 
+          "step": 1,
+          "name": "University Rank: "
+        }
+      }
+    ],
+    "transform": [
+      {
+        "lookup": "properties.NAME",
+        "from": {
+          "data": {
+            "url": "https://raw.githubusercontent.com/LlyodCole/FIT3179/main/Assignment2/data/WorldUniversityRankings2023.csv"
+          },
+          "key": "Location",
+          "fields": ["UniversityRank", "NameofUniversity"]
+        }
+      },
+      {
+        "calculate": "datum.UniversityRank",
+        "as": "UniversityRank"
+      },
+      {"filter":  "datum.UniversityRank > University_Rank_Above"}
+    ],
+    "projection": {
+      "type": "equalEarth"
+    },
+    "layer": [
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+          "format": {"type": "topojson", "feature": "oceans"}
+        },
+        "layer" : [ {
+            "mark": {
+              "type": "geoshape", "fill" : "skyblue"
+            }
+          }   
+        ]
+      },
+        {
+        "data": {
+          "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/WorldMapWithGraticules.topojson",
+          "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+        },
+        "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/KaneSec/vega_lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+          "format": {
+            "type": "topojson",
+            "feature": "ne_110m_admin_0_countries"
+          }
+        },
+        "projection": {
+          "type": "equalEarth"
+        },
+        "layer": [
+          {
+            "transform": [
+              {
+                "calculate": "'Data is not available in ' + datum.properties.NAME",
+                "as": "note"
+              }
+            ],
+            "mark": {
+              "type": "geoshape",
+              "fill": "lightyellow",
+              "stroke": "white"
+            },
+            "encoding": {
+              "tooltip": {
+                "field": "note"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "mark": {
+          "type": "geoshape"
+        },
+        "encoding": {
+          "color": {
+            "field": "UniversityRank",
+            "type": "quantitative"
+          },
+          "tooltip": [
+            {
+              "field": "properties.NAME",
+              "type": "nominal",
+              "title": "Location"
+            },
+            {
+              "field" : "NameofUniversity", 
+              "type": "nominal", 
+              "title" : "Name of University"
+            },
+            {
+              "field": "UniversityRank",
+              "type": "quantitative"
+            }
+          ]
+        }
+      }
+    ]
+  }

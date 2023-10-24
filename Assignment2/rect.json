@@ -1,0 +1,31 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 700,
+    "height": 200,
+    "data": {
+      "url": "https://raw.githubusercontent.com/LlyodCole/FIT3179/main/Assignment2/data/WorldUniversityRankings2023.csv"
+    },
+    "transform": [
+      {"filter": {"field": "UniversityRank", "lte": 20}},
+      {"calculate": "datum['NameofUniversity']", "as": "UniversityName"}
+    ],
+    "mark": "rect",
+    "encoding": {
+      "x": {
+        "field": "UniversityRank",
+        "type": "ordinal",
+        "title": "University Rank"
+      },
+      "color": {
+        "aggregate": "mean",
+        "field": "Industry_Income_Score",
+        "type": "quantitative",
+        "title": "Mean Industry Income Score"
+      },
+      "y": {
+        "field": "UniversityName",
+        "type": "nominal",
+        "title": "University Name"
+      }
+    }
+  }

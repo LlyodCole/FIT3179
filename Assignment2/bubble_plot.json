@@ -1,0 +1,116 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 700,
+    "height": 500,
+    "title": "Highest International Outlook Score by Country",
+    "data": {
+      "url": "https://raw.githubusercontent.com/LlyodCole/FIT3179/main/Assignment2/data/WorldUniversityRankings2023.csv"
+    },
+    "params" : [
+      {
+        "name" : "Outlook_Above",
+        "value" : 0,
+        "bind" : {
+          "input" : "range",
+          "min" : 0,
+          "max" : 100,
+          "step" : 1,
+          "name" : "Minimum Outlook Score: "
+        }
+      },
+      {
+        "name": "Country_selection",
+        "bind": {
+          "input": "select",
+          "options": [
+            null,
+            "United Kingdom",
+            "United State of America",
+            "China",
+            "Canada",
+            "Australia",
+            "Switzerland",
+            "Singapore",
+            "Hong Kong",
+            "Germany",
+            "Japan",
+            "Belgium",
+            "France",
+            "Swedan"
+            
+          ],
+          "labels": [
+            "Show All",
+            "United Kingdom",
+            "United State of America",
+            "China",
+            "Canada",
+            "Australia",
+            "Switzerland",
+            "Singapore",
+            "Algeria",
+            "Angola",
+            "Austria",
+            "Brazil",
+            "Chile",
+            "Hong Kong",
+            "Germany",
+            "Japan",
+            "Korea",
+            "Belgium",
+            "France",
+            "Swedan"
+          ],
+          "name": "Country Selection : "
+        }
+      }
+    ],
+     "transform": [
+      {"filter": "datum.Teaching_Score > 0"},
+      {"filter": "datum.Research_Score > 0"},
+      {"filter": "datum.International_Outlook_Score > Outlook_Above"},
+      {
+        "filter": "Country_selection == null || datum.Location == Country_selection"
+      }
+    ],
+    "layer": [
+      {
+    "mark": "circle",
+    "encoding": {
+      "x": {
+        "field": "Teaching_Score",
+        "type": "quantitative",
+        "title": "Teaching Score"
+      },
+      "y": {
+        "field": "Research_Score",
+        "type": "quantitative",
+        "title": "Research Score"
+        
+      },
+      "color": {
+        "field": "Location",
+        "type": "nominal"
+      },
+      "size": {
+        "field": "International_Outlook_Score",
+        "type": "quantitative"
+      },
+      "tooltip" : [   
+      {"field": "Location", "type": "nominal"},
+      {"field": "Teaching_Score", "type": "quantitative", "format": ","},
+      {"field": "Research_Score", "type": "quantitative", "format": ","},
+      {"field": "International_Outlook_Score", "type": "quantitative", "format": ","}
+    ]
+  
+    }
+    
+  
+  
+      
+    }
+  
+  
+  ]
+  }
+  
