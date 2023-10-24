@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+ <div class="bg-image">
+    <div class="container">
+      <h1>World Unversity Ranking 2023</h1><br>
+
+      <!--SlideShow-->
+      <div class="scene">
+        <div class="cube">
+            <div class="face front"><img src="img/logo11.png" style="width: 100%;" height="100%"></div>
+            <div class="face back"><img src="img/logo22.png" style="width: 100%;" height="100%"></div>
+            <div class="face right"><img src="img/logo3.png" style="width: 100%;" height="100%"></div>
+            <div class="face left"><img src="img/logo4.png" style="width: 100%;" height="100%"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+        </div>
+    </div>
+
+<br><br><br>
+
+<!--title-->
+    <h2>University Ranking around the World</h2>
+      <!--Pic and Txt-->
+      <div class="first">
+      <div class="firsttxt">
+        The map illustrates the global ranking of universities, encompassing factors such as overall rank, location, and country names. 
+        The color encoding of the map is determined by the university ranks, where a high rank indicate a higher position in the ranking system. 
+        The map provides a visual representation of how universities are distributed worldwide, emphasizing the relationship between geographic location, university names, and their respective ranks.
+      </div>
+      <div id="map_chart"></div><br>
+     <p  style=" position: absolute; top: 152vh; right: 30vh; width:1000px">Examining this map reveals that the region in proximity to the United Kingdom boasts the highest ranks, indicating that universities in this area hold prominent positions in the global ranking. 
+        The color encoding effectively distinguishes the diverse ranks of universities, providing a clear visualization of their standings.
+       The inclusion of a filter allows users to tailor the view, simplifying the display to show specific ranks according to individual preferences.</p>
+      <p style=" position: absolute; top: 163vh; right: 70vh; font-size: 23px;"><b>Industry Income Score vs University Rank</b></p>
+      </div>
+   
+      <div class="sec">
+        <div id="bar_chart"></div>
+        <div class="sectxt">
+            The Industry Outcome Scores for the top 10 ranked universities have been highlighted. It's noteworthy that, despite the University of Oxford holding the top position, its income score is comparatively lower, suggesting a more selective admission process and possibly fewer enrolled students. On the other hand, universities ranked 5 and 6 exhibit similar income scores, both around 90, indicating a robust performance in terms of industry income. 
+            The average estimated industry income score for this selection appears to hover around 70.
+        </div>
+        <p style=" position: absolute; top: 197vh; right: 70vh; font-size: 23px;"><b>Teaching Score by Ranking</b></p>
+        </div>
+  
+        <div class="third">
+          <div class="thirdtxt">
+            The area chart visualizes the teaching scores of the top 20 universities, emphasizing the correlation between university rank and teaching excellence. Notably, the University of Oxford, securing the top rank, boasts a commendable Teaching Score of 92.3. Harvard University and the University of Cambridge follow closely with high scores of 94.8 and 90.9, respectively. 
+            The chart provides a comprehensive overview of teaching performance across these top-ranking institutions, offering insights into trends and variations. It serves as a dynamic tool for users to interactively explore the teaching landscape of prestigious universities, fostering a nuanced understanding of their academic strengths.
+          </div>
+          <div id="area_chart"></div>
+          <p style=" position: absolute; top: 248vh; right: 70vh; font-size: 23px;"><b>Industry Income Score</b></p>
+          </div>
+
+          <div class="fourth">
+            <div class="fourthtxt">
+                The industry income scores of the top 20 universities reveal intriguing patterns and disparities. The University of Oxford, securing the top rank, exhibits a mean industry income score of 74.9, indicating a strong economic impact. However, Harvard University, despite its second rank, has a notably lower score of 49.5, suggesting potential variations in the economic contributions of these prestigious institutions.
+                 This data provides valuable insights into the economic influence of leading universities, offering a nuanced perspective on their financial engagement and impact.
+            </div>
+            <div id="rect"></div>
+            </div>
+
+            <div class="fifth">
+                <div class="fifthtxt">
+                    The bubble scatterplot featured in this chart offers a visually compelling way to explore university data. 
+                    Here, each bubble corresponds to a university's location, with its size reflecting the International Outlook Score.
+                     The chart's layout reveals interesting relationships between Teaching and Research Scores. The added functionality of filtering out universities below a specified minimum outlook score enhances the user experience, providing a dynamic and engaging tool for delving into the intricacies of world university rankings.
+                </div>
+                <div id="bubble_plot"></div>
+                <p style=" position: absolute; top: 301vh; right: 70vh; font-size: 23px;"><b>Research Score vs Teaching Score</b></p>
+                </div>
+    </div>
+ </div>
+
+ <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+ <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+ <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+ <script src="vega_lite_vis.js"></script>
+</body>
+</html>
